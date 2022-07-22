@@ -17,19 +17,21 @@ namespace spice.Repositories
         {
             string sql = @"
             INSERT INTO ingredients
-            (name, description, recipieId)
+            (name, description, recipieId  )
             VALUES
-            (@Name, @Description, @RecipieId);
+            (@Name, @Description,@RecipieId );
             SELECT LAST_INSERT_ID();";
-            int id = _db.ExecuteScalar<int>(sql, ingredientData);
-            ingredientData.Id = id;
+            ingredientData.Id  = _db.ExecuteScalar<int>(sql, ingredientData);
+            
             return ingredientData;
         }
+
         internal List<Ingredient> GetByRecipieId(int recipieId)
         {
             string sql = "SELECT * FROM ingredients WHERE recipieId = @RecipieId";
             return _db.Query<Ingredient>(sql, new { recipieId }).ToList();
         }
+        
 
     }
 }

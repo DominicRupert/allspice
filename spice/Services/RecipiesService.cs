@@ -34,14 +34,17 @@ namespace spice.Services
             // }
             return found;
         }
-        internal Recipie Edit(Recipie recipieData, string userId)
+        internal Recipie Edit(Recipie recipieData)
         {
-            Recipie original = GetById(recipieData.Id, userId);
+            Recipie original = GetById(recipieData.Id, recipieData.CreatorId);
             original.Name = recipieData.Name ?? original.Name;
+            original.Category = recipieData.Category ?? original.Category;
+
             original.Description = recipieData.Description ?? original.Description;
             original.Image = recipieData.Image ?? original.Image;
 
-            return _repo.Edit(original);
+            _repo.Edit(original);
+            return original;
         }
         internal void Delete(int recipieId, string userId)
         {

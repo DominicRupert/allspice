@@ -1,6 +1,8 @@
 using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Data;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,37 +14,35 @@ namespace spice.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class IngredientsController : ControllerBase
+    public class StepsController: ControllerBase
     {
-        private readonly IngredientsService _iserv;
-        public IngredientsController(IngredientsService iserv)
+        private readonly StepsService _ss;
+        public StepsController(StepsService ss)
         {
-            _iserv = iserv;
+            _ss = ss;
         }
-
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Ingredient>>> GetByRecipieId(int recipieId)
+        public async Task<ActionResult<List<Step>>> GetByRecipieId(int recipieId)
         {
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                List<Ingredient> ingredients = _iserv.GetByRecipieId(recipieId, userInfo.Id);
-                return Ok(ingredients);
+                List<Step> steps = _ss.GetByRecipieId(recipieId, userInfo.Id);
+                return Ok(steps);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
-
         [HttpPost]
-        public async Task<ActionResult<Ingredient>> CreateAsync([FromBody] Ingredient ingredientData)
+        public async Task<ActionResult<Step>> CreateAsync([FromBody] Step stepData)
         {
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                Ingredient ingredient = _iserv.Create(ingredientData, userInfo.Id);
-                return Ok(ingredient);
+                Step step = _ss.Create(stepData, userInfo.Id);
+                return Ok(step);
             }
             catch (Exception e)
             {

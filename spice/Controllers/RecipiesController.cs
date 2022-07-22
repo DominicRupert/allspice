@@ -11,6 +11,7 @@ using spice.Services;
 namespace spice.Controllers
 {
     [ApiController]
+    [Authorize]
 
     [Route("api/[controller]")]
 
@@ -18,10 +19,12 @@ namespace spice.Controllers
     {
         private readonly RecipiesService _rs;
         private readonly IngredientsService _iserv;
-        public RecipiesController(RecipiesService rs , IngredientsService iserv)
+        private readonly StepsService _ss;
+        public RecipiesController(RecipiesService rs , IngredientsService iserv,StepsService ss )
         {
             _rs = rs;
             _iserv = iserv;
+            _ss = ss;
         }
        
         [HttpGet]
@@ -56,13 +59,27 @@ namespace spice.Controllers
             }
         }
         [HttpGet("{id}/ingredients")]
-        public async Task<ActionResult<List<Ingredient>>> GetByRecipieId(int id)
+        public async Task<ActionResult<List<Ingredient>>> GetIngredientsByRecipieId(int id)
         {
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 List<Ingredient> ingredients = _iserv.GetByRecipieId(id, userInfo.Id);
                 return Ok(ingredients);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("{id}/steps")]
+        public async Task<ActionResult<List<Step>>> GetStepsByRecipieId(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Step> steps = _ss.GetByRecipieId(id, userInfo.Id);
+                return Ok(steps);
             }
             catch (Exception e)
             {
@@ -89,6 +106,25 @@ namespace spice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Recipie>> EditAsync([FromBody] Recipie recipieData, int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                recipieData.Id = id;
+                Recipie updatedRecipie = _rs.Edit(recipieData);
+
+            
+                return Ok(updatedRecipie);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
     }

@@ -49,25 +49,25 @@ namespace spice.Repositories
         {
             string sql = @"
             INSERT INTO recipies
-            (name, description, image, creatorId)
+            (name, description, category, image, creatorId)
             VALUES
-            (@Name, @Description, @Image, @CreatorId);
+            (@Name, @Description, @Category, @Image, @CreatorId);
             SELECT LAST_INSERT_ID();";
             int id = _db.ExecuteScalar<int>(sql, recipieData);
             recipieData.Id = id;
             return recipieData;
         }
-        internal Recipie Edit(Recipie recipieData)
+        internal void Edit(Recipie original)
         {
             string sql = @"
             UPDATE recipies
             SET name = @Name,
             description = @Description,
-            image = @Image,
-            steps = @Steps
-            WHERE id @Id";
-            _db.Execute(sql, recipieData);
-            return recipieData;
+            category = @Category,
+            image = @Image
+            WHERE id = @Id;";
+            _db.Execute(sql, original);
+            // return original;
 
 
         }

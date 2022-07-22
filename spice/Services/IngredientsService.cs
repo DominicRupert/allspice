@@ -17,15 +17,15 @@ namespace spice.Services
         _rs = rs;
         _repo = repo;
     }
-    internal List<Ingredient> GetByRecipieId(int recipieId, string userId)
-    {
-      _rs.GetById(recipieId, userId);
-        return _repo.GetByRecipieId(recipieId);
-    }
     internal Ingredient Create(Ingredient ingredientData, string userId)
     {
         _rs.GetById(ingredientData.RecipieId, userId);
         return _repo.Create(ingredientData);
+    }
+    internal List<Ingredient> GetByRecipieId(int recipieId, string userId)
+    {
+      _rs.GetById(recipieId, userId);
+        return _repo.GetByRecipieId(recipieId);
     }
     }
 }
