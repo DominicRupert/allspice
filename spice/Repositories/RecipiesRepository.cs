@@ -38,7 +38,7 @@ namespace spice.Repositories
             a.*
             FROM recipies r
             JOIN accounts a ON r.CreatorId = a.Id
-            WHERE r.Id = @id ";
+            WHERE r.Id = @recipieId ";
             return _db.Query<Recipie, Profile, Recipie>(sql, (recipie, prof) =>
             {
                 recipie.Creator = prof;

@@ -17,9 +17,9 @@ namespace spice.Repositories
         {
             string sql = @"
             INSERT INTO ingredients
-            (name, recipieId)
+            (name, description, recipieId)
             VALUES
-            (@Name, @RecipieId);
+            (@Name, @Description, @RecipieId);
             SELECT LAST_INSERT_ID();";
             int id = _db.ExecuteScalar<int>(sql, ingredientData);
             ingredientData.Id = id;
@@ -27,11 +27,7 @@ namespace spice.Repositories
         }
         internal List<Ingredient> GetByRecipieId(int recipieId)
         {
-            string sql = @"
-            SELECT 
-            *
-            FROM ingredients 
-            WHERE RecipieId = @recipieId";
+            string sql = "SELECT * FROM ingredients WHERE recipieId = @RecipieId";
             return _db.Query<Ingredient>(sql, new { recipieId }).ToList();
         }
 

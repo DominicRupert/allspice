@@ -19,8 +19,8 @@ namespace spice.Controllers
         {
             _iserv = iserv;
         }
-     
-        [HttpGet("{recipieId}")]
+
+        [HttpGet("{recipieId}/ingredients")]
         public async Task<ActionResult<List<Ingredient>>> GetByRecipieId(int recipieId)
         {
             try
@@ -34,8 +34,8 @@ namespace spice.Controllers
                 return BadRequest(e.Message);
             }
         }
-      
-        [HttpPost]
+
+        [HttpPost("{recipieId}")]
         public async Task<ActionResult<Ingredient>> CreateAsync([FromBody] Ingredient ingredientData)
         {
             try
@@ -49,4 +49,5 @@ namespace spice.Controllers
                 return BadRequest(e.Message);
             }
         }
-    }}
+    }
+}
