@@ -12,12 +12,12 @@ CREATE TABLE
     IF NOT EXISTS recipies (
         id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-        name varchar(255) COMMENT 'Recipe Name',
-        description TEXT COMMENT 'Recipe Description',
-        category varchar(255) COMMENT 'Recipe Category',
-        image varchar(255) COMMENT 'Recipe Picture',
-        creatorId VARCHAR(255) NOT NULL COMMENT 'User Id',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+        name varchar(255),
+        description TEXT ,
+        category varchar(255) ,
+        image varchar(255) ,
+        creatorId VARCHAR(255) NOT NULL,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
@@ -26,7 +26,7 @@ CREATE TABLE
             id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
             createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
             updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-            name varchar(255) COMMENT 'Ingredient Name',
-           recipieId INT NOT NULL COMMENT 'Recipe Id',
+            name varchar(255) NOT NULL,
+           recipieId INT NOT NULL ,
             FOREIGN KEY (recipieId) REFERENCES recipies(id) ON DELETE CASCADE
         ) default charset utf8 COMMENT '';

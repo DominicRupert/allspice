@@ -56,7 +56,7 @@ namespace spice.Controllers
             }
         }
         [HttpGet("{id}/ingredients")]
-        public async Task<ActionResult<List<Ingredient>>> GetIngredients(int id)
+        public async Task<ActionResult<List<Ingredient>>> GetByRecipieId(int id)
         {
             try
             {
