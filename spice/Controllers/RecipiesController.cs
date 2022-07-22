@@ -42,7 +42,7 @@ namespace spice.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Recipie>> GetRecipie(int id)
+        public async Task<ActionResult<Recipie>> GetById(int id)
         {
             try
             {

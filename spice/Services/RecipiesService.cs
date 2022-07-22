@@ -24,14 +24,14 @@ namespace spice.Services
         internal Recipie GetById(int recipieId, string userId)
         {
             Recipie found = _repo.GetById(recipieId);
-            if (found == null)
-            {
-                throw new Exception("Recipie not found");
-            }
-            if (found.CreatorId != userId)
-            {
-                throw new Exception("You are not authorized to access this recipie");
-            }
+            // if (found == null)
+            // {
+            //     throw new Exception("Recipie not found");
+            // }
+            // if (found.CreatorId != userId)
+            // {
+            //     throw new Exception("You are not authorized to access this recipie");
+            // }
             return found;
         }
         internal Recipie Edit(Recipie recipieData, string userId)

@@ -13,6 +13,18 @@ namespace spice.Repositories
         {
             _db = db;
         }
+        internal Ingredient Create(Ingredient ingredientData)
+        {
+            string sql = @"
+            INSERT INTO ingredients
+            (name, recipieId)
+            VALUES
+            (@Name, @RecipieId);
+            SELECT LAST_INSERT_ID();";
+            int id = _db.ExecuteScalar<int>(sql, ingredientData);
+            ingredientData.Id = id;
+            return ingredientData;
+        }
         internal List<Ingredient> GetByRecipieId(int recipieId)
         {
             string sql = @"
@@ -21,18 +33,6 @@ namespace spice.Repositories
             FROM ingredients 
             WHERE RecipieId = @recipieId";
             return _db.Query<Ingredient>(sql, new { recipieId }).ToList();
-        }
-        internal Ingredient Create(Ingredient ingredientData)
-        {
-            string sql = @"
-            INSERT INTO ingredients
-            (name, amount, unit, recipieId)
-            VALUES
-            (@Name, @Amount, @Unit, @RecipieId);
-            SELECT LAST_INSERT_ID();";
-            int id = _db.ExecuteScalar<int>(sql, ingredientData);
-            ingredientData.Id = id;
-            return ingredientData;
         }
 
     }
