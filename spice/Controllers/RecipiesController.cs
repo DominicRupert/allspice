@@ -21,14 +21,14 @@ namespace spice.Controllers
         private readonly IngredientsService _iserv;
         private readonly StepsService _ss;
         private readonly FavoritesService _fserv;
-        public RecipiesController(RecipiesService rs , IngredientsService iserv,StepsService ss,FavoritesService fserv)
+        public RecipiesController(RecipiesService rs, IngredientsService iserv, StepsService ss, FavoritesService fserv)
         {
             _rs = rs;
             _iserv = iserv;
             _ss = ss;
             _fserv = fserv;
         }
-     
+
         [HttpGet]
         public async Task<ActionResult<List<Recipie>>> GetAllRecipies(string query = "")
         {
@@ -89,7 +89,7 @@ namespace spice.Controllers
             }
         }
         [HttpGet("{id}/favorites")]
-        public async Task<ActionResult<List<Favorite>>> GetFavoritesByRecipieId(int id)
+        public async Task<ActionResult<List<Favorite>>> GetFavorites(int id)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace spice.Controllers
                 recipieData.Id = id;
                 Recipie updatedRecipie = _rs.Edit(recipieData);
 
-            
+
                 return Ok(updatedRecipie);
             }
             catch (Exception e)

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using spice.Models;
 using spice.Repositories;
@@ -25,8 +24,9 @@ namespace spice.Services
         {
             return _repo.GetByUserId(userId);
         }
-        internal Favorite GetByRecipieId(int recipieId, string userId)
+        internal List<Favorite> GetByRecipieId(int recipieId, string userId)
         {
+            _rs.GetById(recipieId, userId);
             return _repo.GetByRecipieId(recipieId);
         }
 

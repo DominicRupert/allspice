@@ -15,17 +15,14 @@ namespace spice.Repositories
         {
             _db = db;
         }
-        internal Favorite GetByRecipieId(int recipieId)
+        internal List<Favorite> GetByRecipieId(int recipieId)
         {
-            string sql = @"SELECT 
-            r.*,
-            f.id AS favoriteId,
-            FROM favorites f
-            JOIN recipies r ON f.recipieId = r.id
-            WHERE f.id = @id AND f.userId = @userId";
+            string sql = "SELECT * FROM Favorites WHERE RecipieId = @recipieId";
+           
+         
            
            
-            return _db.QueryFirstOrDefault<Favorite>(sql, new { recipieId });
+            return _db.Query<Favorite>(sql, new { recipieId }).ToList();
         }
         internal Favorite Create(Favorite favoriteData)
         {

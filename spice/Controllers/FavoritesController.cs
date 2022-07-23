@@ -53,11 +53,11 @@ namespace spice.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Favorite>> GetFavorite(int recipieId, string userId)
+        public async Task<ActionResult<Favorite>> GetByRecipieId(int recipieId, string userId)
         {
             try
             {
-                Favorite favorite = _fserv.GetFavoritesByRecipieId(recipieId, userId);
+                List<Favorite> favorite = _fserv.GetByRecipieId(recipieId, userId);
                 return Ok(favorite);
             }
             catch (Exception e)

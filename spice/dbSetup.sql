@@ -49,7 +49,7 @@ CREATE TABLE
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         recipieId INT NOT NULL,
-        userId VARCHAR(255) NOT NULL,
+        creatorId VARCHAR(255),
         FOREIGN KEY (recipieId) REFERENCES recipies(id) ON DELETE CASCADE,
-        FOREIGN KEY (userId) REFERENCES accounts(id) ON DELETE CASCADE
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8;
