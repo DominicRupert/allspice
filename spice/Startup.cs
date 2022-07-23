@@ -48,6 +48,8 @@ namespace spice
             services.AddTransient<IngredientsService>();
             services.AddTransient<StepsRepository>();
             services.AddTransient<StepsService>();
+            services.AddTransient<FavoritesRepository>();
+            services.AddTransient<FavoritesService>();
             
 
 

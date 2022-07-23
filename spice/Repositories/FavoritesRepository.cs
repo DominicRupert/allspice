@@ -15,7 +15,7 @@ namespace spice.Repositories
         {
             _db = db;
         }
-        internal Favorite GetFavorite(int id, string userId)
+        internal Favorite GetByRecipieId(int recipieId)
         {
             string sql = @"SELECT 
             r.*,
@@ -25,7 +25,7 @@ namespace spice.Repositories
             WHERE f.id = @id AND f.userId = @userId";
            
            
-            return _db.QueryFirstOrDefault<Favorite>(sql, new { id, userId });
+            return _db.QueryFirstOrDefault<Favorite>(sql, new { recipieId });
         }
         internal Favorite Create(Favorite favoriteData)
         {
@@ -43,10 +43,6 @@ namespace spice.Repositories
             string sql = "SELECT * FROM favorites WHERE userId = @UserId";
             return _db.Query<Favorite>(sql, new { userId }).ToList();
         }
-        internal Favorite GetById(int id, string userId)
-        {
-            string sql = "SELECT * FROM favorites WHERE id = @Id AND userId = @UserId";
-            return _db.QueryFirstOrDefault<Favorite>(sql, new { id, userId });
-        }
+     
     }
 }

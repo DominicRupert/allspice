@@ -20,13 +20,15 @@ namespace spice.Controllers
         private readonly RecipiesService _rs;
         private readonly IngredientsService _iserv;
         private readonly StepsService _ss;
-        public RecipiesController(RecipiesService rs , IngredientsService iserv,StepsService ss )
+        private readonly FavoritesService _fserv;
+        public RecipiesController(RecipiesService rs , IngredientsService iserv,StepsService ss,FavoritesService fserv)
         {
             _rs = rs;
             _iserv = iserv;
             _ss = ss;
+            _fserv = fserv;
         }
-       
+     
         [HttpGet]
         public async Task<ActionResult<List<Recipie>>> GetAllRecipies(string query = "")
         {
@@ -86,6 +88,21 @@ namespace spice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("{id}/favorites")]
+        public async Task<ActionResult<List<Favorite>>> GetFavoritesByRecipieId(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Favorite> favorites = _fserv.GetByRecipieId(id, userInfo.Id);
+                return Ok(favorites);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Recipie>> CreateAsync([FromBody] Recipie recipieData)
