@@ -32,6 +32,7 @@ namespace spice.Repositories
             return _db.Query<Ingredient>(sql, new { recipieId }).ToList();
         }
         
+        
 
     }
 }

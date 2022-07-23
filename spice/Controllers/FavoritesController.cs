@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+
 using CodeWorks.Auth0Provider;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using spice.Models;
-using spice.Repositories;
 using spice.Services;
 
 
@@ -15,8 +13,8 @@ using spice.Services;
 namespace spice.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
     [Authorize]
+    [Route("api/[controller]")]
 
     public class FavoritesController:ControllerBase
     {
@@ -26,12 +24,15 @@ namespace spice.Controllers
             _fserv = fserv;
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Favorite>> CreateAsync([FromBody] Favorite favoriteData)
         {
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                Favorite favorite = _fserv.Create(favoriteData, userInfo.Id);
+                favoriteData.CreatorId = userInfo.Id;
+                Favorite favorite = _fserv.Create(favoriteData);
+                favorite.Creator = userInfo;
                 return Ok(favorite);
             }
             catch (Exception e)

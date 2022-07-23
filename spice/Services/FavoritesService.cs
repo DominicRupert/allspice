@@ -15,9 +15,8 @@ namespace spice.Services
             _rs = rs;
             _repo = repo;
         }
-        internal Favorite Create(Favorite favoriteData, string userId)
+        internal Favorite Create(Favorite favoriteData)
         {
-            _rs.GetById(favoriteData.RecipieId, userId);
             return _repo.Create(favoriteData);
         }
         internal List<Favorite> GetByUserId(string userId)
@@ -31,7 +30,7 @@ namespace spice.Services
         }
 
 
-    
-    
+
+
     }
 }

@@ -17,7 +17,7 @@ namespace spice.Repositories
         }
         internal List<Favorite> GetByRecipieId(int recipieId)
         {
-            string sql = "SELECT * FROM Favorites WHERE RecipieId = @recipieId";
+            string sql = "SELECT * FROM favorites WHERE RecipieId = @recipieId";
            
          
            
@@ -40,6 +40,7 @@ namespace spice.Repositories
             string sql = "SELECT * FROM favorites WHERE userId = @UserId";
             return _db.Query<Favorite>(sql, new { userId }).ToList();
         }
+        
      
     }
 }
