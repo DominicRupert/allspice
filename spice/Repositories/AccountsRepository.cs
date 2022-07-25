@@ -35,6 +35,12 @@ namespace spice.Repositories
             _db.Execute(sql, newAccount);
             return newAccount;
         }
+      
+        // internal Account GetRecipies(int favoriteId)
+        // {
+        //     string sql = "SELECT * FROM accounts WHERE id = @id";
+        //     return _db.QueryFirstOrDefault<Account>(sql, new { id = favoriteId });
+        // }
 
         internal Account Edit(Account update)
         {

@@ -81,6 +81,13 @@ namespace spice.Repositories
             _db.Execute(sql, new { id, userId });
 
         }
+        // internal Recipie GetRecipieCreator(string userId)
+        // {
+        //     string sql = @"
+        //     SELECT * FROM recipies WHERE creatorId = @userId";
+        //     return _db.QueryFirstOrDefault<Recipie>(sql, new { userId });
+        // }
+      
 
 
     }

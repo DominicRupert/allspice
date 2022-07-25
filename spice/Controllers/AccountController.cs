@@ -34,6 +34,20 @@ namespace spice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        // [HttpGet("{id}/recipies") ]
+        // public async Task<ActionResult<List<Favorite>>> GetRecipies(int id)
+        // {
+        //     try
+        //     {
+        //         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        //         List<Recipie> recipies = _accountService.GetRecipies(id, creatorId: userInfo.Id);
+        //         return Ok(recipies);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
     }
 
 

@@ -6,10 +6,13 @@ namespace spice.Services
     public class AccountService
     {
         private readonly AccountsRepository _repo;
-        public AccountService(AccountsRepository repo)
+        private readonly RecipiesService _rs;
+        public AccountService(AccountsRepository repo, RecipiesService rs)
         {
             _repo = repo;
+            _rs = rs;
         }
+       
 
         internal string GetProfileEmailById(string id)
         {
@@ -28,6 +31,7 @@ namespace spice.Services
             }
             return profile;
         }
+      
 
         internal Account Edit(Account editData, string userEmail)
         {
@@ -36,5 +40,11 @@ namespace spice.Services
             original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
             return _repo.Edit(original);
         }
+        // internal Account GetRecipies(int recipieId, string creatorId )
+        // {
+        //     _rs.GetById(recipieId, creatorId);
+        //     return _repo.GetRecipies(recipieId);
+        // }
+        
     }
 }

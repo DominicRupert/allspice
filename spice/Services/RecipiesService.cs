@@ -8,10 +8,13 @@ namespace spice.Services
     public class RecipiesService
     {
         private readonly RecipiesRepository _repo;
-        public RecipiesService(RecipiesRepository repo)
+        // private readonly AccountService _accountService;
+        public RecipiesService(RecipiesRepository repo )
         {
             _repo = repo;
+            // _accountService = accountService;
         }
+       
         internal List<Recipie> GetAllRecipies(string userId)
         {
             return _repo.GetAllRecipies(userId);
@@ -57,5 +60,12 @@ namespace spice.Services
 
 
         }
+
+        // internal List<Recipie> GetRecipieCreator(string userId)
+        // {
+        //     return _repo.GetRecipieCreator(userId);
+        // }
+
+       
     }
 }

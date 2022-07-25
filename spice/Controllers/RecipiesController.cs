@@ -11,7 +11,6 @@ using spice.Services;
 namespace spice.Controllers
 {
     [ApiController]
-    [Authorize]
 
     [Route("api/[controller]")]
 

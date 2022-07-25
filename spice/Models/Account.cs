@@ -8,6 +8,11 @@ namespace spice.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string Picture { get; set; }
+
+        public int RecipieId { get; set; }
+        public int FavoriteId { get; set; }
+
+        
     }
 
     public class Account : Profile

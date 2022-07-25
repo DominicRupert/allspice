@@ -1,10 +1,10 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    </div>
-    <div v-for="r in recipies" :key="r.id" class="col-md-4">
-  <Recipie :recipie="r" />
+<div class="container">
 
-  </div>
+  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <div v-for="recipie in recipies" :key="recipie.id" :recipie="recipie">{{recipie.name}}{{recipie.ingredients}}</div>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -21,13 +21,18 @@ export default {
     setup() {
         onMounted(async () => {
           try {
-            await recipiesService.getRecipies()
+            await recipiesService.getAll()
+            await recipiesService.getIngredients()
           } catch (error) {
             logger.error(error)
           }
 
+
           
         });
+        return{
+          recipies: computed(() => AppState.recipies)
+        }
     },
 }
 </script>
