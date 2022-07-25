@@ -1,8 +1,10 @@
 <template>
-<div class="container">
+<div class="container-fluid d-flex flex-row bg-dark">
+<div class="row">
 
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div v-for="recipie in recipies" :key="recipie.id" :recipie="recipie">{{recipie.name}}{{recipie.ingredients}}</div>
+  <div class=" d-flex flex-column ">
+    <Recipie v-for="recipie in recipies" :key="recipie.id" :recipie="recipie"></Recipie>
+    </div>
     </div>
     </div>
 </template>
