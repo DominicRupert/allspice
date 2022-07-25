@@ -5,5 +5,5 @@ import { api } from "./AxiosService.js";
 
 class RecipiesService{
 
-    async 
+    
 }

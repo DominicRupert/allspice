@@ -34,8 +34,8 @@ namespace spice.Controllers
 
             try
             {
-                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                List<Recipie> recipies = _rs.GetAllRecipies(userInfo.Id);
+                // Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Recipie> recipies = _rs.GetAllRecipies();
                 return Ok(recipies);
 
             }

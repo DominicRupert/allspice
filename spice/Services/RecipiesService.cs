@@ -15,9 +15,9 @@ namespace spice.Services
             // _accountService = accountService;
         }
        
-        internal List<Recipie> GetAllRecipies(string userId)
+        internal List<Recipie> GetAllRecipies()
         {
-            return _repo.GetAllRecipies(userId);
+            return _repo.GetAllRecipies();
         }
    
         internal Recipie CreateRecipie(Recipie recipieData)
