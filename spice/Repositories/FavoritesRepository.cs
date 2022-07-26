@@ -18,21 +18,22 @@ namespace spice.Repositories
         internal List<Favorite> GetByRecipieId(int recipieId)
         {
             string sql = "SELECT * FROM favorites WHERE RecipieId = @recipieId";
-           
-         
-           
-           
+
+
+
+
             return _db.Query<Favorite>(sql, new { recipieId }).ToList();
         }
         internal Favorite Create(Favorite favoriteData)
         {
             string sql = @"
             INSERT INTO favorites
-            (recipieId, creatorId  )
+            (accountId, recipieId )
             VALUES
-            (@RecipieId, @CreatorId );
+            (@AccountId, @RecipieId);
             SELECT LAST_INSERT_ID();";
-            favoriteData.Id  = _db.ExecuteScalar<int>(sql, favoriteData);
+            int id = _db.ExecuteScalar<int>(sql, favoriteData);
+            favoriteData.Id = id;
             return favoriteData;
         }
         internal List<Favorite> GetByUserId(string userId)
@@ -40,7 +41,7 @@ namespace spice.Repositories
             string sql = "SELECT * FROM favorites WHERE userId = @UserId";
             return _db.Query<Favorite>(sql, new { userId }).ToList();
         }
-        
-     
+
+
     }
 }

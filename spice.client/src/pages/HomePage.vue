@@ -1,10 +1,9 @@
 <template>
-<div class="container-fluid d-flex flex-row bg-dark">
-<div class="row">
+<div class="container d-flex flex-column bg-dark">
+<div class="row flex-row">
 
-  <div class=" d-flex flex-column ">
     <Recipie v-for="recipie in recipies" :key="recipie.id" :recipie="recipie"></Recipie>
-    </div>
+
     </div>
     </div>
 </template>

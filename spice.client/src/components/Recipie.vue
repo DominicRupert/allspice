@@ -1,15 +1,14 @@
 <template>
-  <div class="recipie-card container-fluid selectable" @click="selectRecipie">
-    <div class="recipe-card-content row">
+
       <div class="col-md-4">
+
         <h3 class="">{{ recipie.name }}</h3>
         <h3>{{ recipie.ingredients }}</h3>
         <p>{{ recipie.id }}</p>
         <p>{{ recipie.steps }}</p>
-        <img src="https://thiscatdoesnotexist.com" class="" alt="" />
+        <img src="https://thiscatdoesnotexist.com" class="img-fluid" alt="" />
       </div>
-    </div>
-  </div>
+     
 </template>
 
 

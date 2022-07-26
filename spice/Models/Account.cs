@@ -9,8 +9,7 @@ namespace spice.Models
         public string Name { get; set; }
         public string Picture { get; set; }
 
-        public int RecipieId { get; set; }
-        public int FavoriteId { get; set; }
+
 
         
     }

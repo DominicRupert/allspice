@@ -15,4 +15,8 @@ namespace spice.Models
         public string CreatorId { get; set; }
         public Profile Creator { get; set; }
     }
+public class RecipieFavoriteViewModel : Recipie
+{
+    public int FavoriteId { get; set; }
+}
 }
